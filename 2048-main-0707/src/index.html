@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+</head>
+<body>
+    <div class="background-container">
+        <!-- 背景图片会在JS中设置 -->
+    </div>
+    
+    <div class="container">
+        <h1 id="game-title">2048</h1>
+        <div class="score-container">
+            <div class="score-box">
+                <div class="score-label">分数</div>
+                <div id="score">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">最高分</div>
+                <div id="best-score">0</div>
+            </div>
+        </div>
+        <div class="game-controls">
+            <button id="new-game">新游戏</button>
+            <button id="undo-button" disabled>撤销</button>
+        </div>
+        <div class="game-board">
+            <!-- 4x4的网格会在JS中动态创建 -->
+        </div>
+        <div class="game-over" id="game-over">
+            <div class="game-over-message">
+                <h2>游戏结束!</h2>
+                <p>您的分数: <span id="final-score">0</span></p>
+                <button id="retry">再试一次</button>
+            </div>
+        </div>
+        <div class="game-victory" id="game-victory">
+            <div class="game-victory-message">
+                <h2>🎉 恭喜胜利! 🎉</h2>
+                <p>您成功达到了 <strong>2048</strong>!</p>
+                <p>您的分数: <span id="victory-score">0</span></p>
+                <div class="victory-buttons">
+                    <button id="continue-game">继续游戏</button>
+                    <button id="new-game-victory">新游戏</button>
+                </div>
+            </div>
+        </div>
+        <div class="instructions">
+            <p>使用方向键 ↑ ↓ ← → 移动方块。相同数字的方块碰撞后会合并！</p>
+            <p class="bg-hint">点击"2048"标题可以更换背景</p>
+        </div>
+    </div>
+    
+    <!-- 独立的背景选择菜单 -->
+    <div class="background-modal" id="background-modal">
+        <div class="background-modal-content">
+            <div class="modal-header">
+                <h3>选择背景</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="background-options">
+                <!-- 背景预览图将在JS中动态创建 -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/game-core.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

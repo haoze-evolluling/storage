@@ -1,0 +1,666 @@
+/* 基本样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #34495e;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 背景容器 */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    transition: background-image 0.8s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #1565C0;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+    position: relative;
+    display: inline-block;
+}
+
+h1:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(21, 101, 192, 0.3);
+}
+
+h1:active {
+    transform: scale(0.95);
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #1565C0;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+h1:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* 分数展示 */
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.score-box {
+    background-color: #1565C0;
+    color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+    width: 48%;
+    box-shadow: 0 2px 10px rgba(21, 101, 192, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.score-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(21, 101, 192, 0.4);
+}
+
+.score-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+#score, #best-score {
+    font-size: 24px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* 分数变化动画 - 在animation.css中定义了更好的版本 */
+
+/* 游戏按钮 */
+button {
+    background-color: #1565C0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(21, 101, 192, 0.2);
+}
+
+button:hover {
+    background-color: #0D47A1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(21, 101, 192, 0.3);
+}
+
+button:active {
+    transform: scale(0.95) translateY(0);
+    box-shadow: 0 2px 4px rgba(21, 101, 192, 0.2);
+}
+
+/* 游戏控制按钮容器 */
+.game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.game-controls button {
+    margin-bottom: 0;
+    min-width: 100px;
+}
+
+/* 撤销按钮特殊样式 */
+#undo-button {
+    background-color: #FF9800;
+    box-shadow: 0 4px 6px rgba(255, 152, 0, 0.2);
+}
+
+#undo-button:hover:not(:disabled) {
+    background-color: #F57C00;
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
+}
+
+#undo-button:disabled {
+    background-color: #BDBDBD;
+    color: #757575;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.2);
+}
+
+#undo-button:disabled:hover {
+    background-color: #BDBDBD;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.2);
+}
+
+/* 游戏板样式 */
+.game-board {
+    background-color: #1976D2;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto 20px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 6px 15px rgba(25, 118, 210, 0.3);
+}
+
+.game-board:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(25, 118, 210, 0.4);
+}
+
+.tile {
+    background-color: #BBDEFB;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 0.15s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 不同数值的方块颜色 */
+.tile-2 { background-color: #FFE066; color: #333; }
+.tile-4 { background-color: #FFB347; color: #333; }
+.tile-8 { background-color: #FF6F61; color: white; }
+.tile-16 { background-color: #F44336; color: white; }
+.tile-32 { background-color: #9C27B0; color: white; }
+.tile-64 { background-color: #3F51B5; color: white; }
+.tile-128 { background-color: #2196F3; color: white; }
+.tile-256 { background-color: #4CAF50; color: white; }
+.tile-512 { background-color: #69F0AE; color: #333; }
+.tile-1024 { background-color: #00BCD4; color: white; font-size: 20px; }
+.tile-2048 { background-color: #FFD700; color: #333; font-size: 20px; }
+
+/* 游戏结束样式 */
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.game-over-message {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.game-over-message h2 {
+    color: #1565C0;
+    margin-bottom: 20px;
+}
+
+.game-over-message p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* 胜利界面样式 */
+.game-victory {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(21, 101, 192, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.game-victory-message {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 3px solid #1565C0;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-victory-message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.game-victory-message h2 {
+    color: #1565C0;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-shadow: 0 2px 4px rgba(21, 101, 192, 0.3);
+}
+
+.game-victory-message p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #34495e;
+}
+
+.game-victory-message strong {
+    color: #1565C0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.victory-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.victory-buttons button {
+    margin-bottom: 0;
+    min-width: 120px;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#continue-game {
+    background-color: #4CAF50;
+    box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
+}
+
+#continue-game:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+#new-game-victory {
+    background-color: #1565C0;
+    box-shadow: 0 4px 6px rgba(21, 101, 192, 0.2);
+}
+
+#new-game-victory:hover {
+    background-color: #0D47A1;
+    box-shadow: 0 6px 12px rgba(21, 101, 192, 0.3);
+}
+
+/* 烟花动画效果 */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: firework 1.5s ease-out forwards;
+}
+
+@keyframes firework {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 1;
+    }
+    15% {
+        transform: translateY(50vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(50vh) scale(0);
+        opacity: 0;
+    }
+}
+
+.firework-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    animation: particle 1s ease-out forwards;
+}
+
+@keyframes particle {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) translate(var(--dx), var(--dy));
+        opacity: 0;
+    }
+}
+
+/* 烟花颜色变化 */
+.firework-red { background-color: #ff4757; }
+.firework-blue { background-color: #3742fa; }
+.firework-green { background-color: #2ed573; }
+.firework-yellow { background-color: #ffa502; }
+.firework-purple { background-color: #a55eea; }
+.firework-orange { background-color: #ff6348; }
+
+.instructions {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-top: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.instructions:hover {
+    opacity: 1;
+}
+
+.bg-hint {
+    margin-top: 10px;
+    font-style: italic;
+    color: #1565C0;
+    position: relative;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.bg-hint:hover {
+    background-color: rgba(21, 101, 192, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 背景选择器弹出式样式 - 移除动画效果 */
+.background-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.background-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    color: #1565C0;
+    font-size: 20px;
+    margin: 0;
+}
+
+.close-modal {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.close-modal:hover {
+    color: #1565C0;
+    background-color: rgba(21, 101, 192, 0.1);
+    transform: rotate(90deg);
+}
+
+.background-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.background-option {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.background-option:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.background-option:active {
+    transform: scale(0.95);
+}
+
+.background-option.active {
+    border-color: #1565C0;
+}
+
+.background-option.active::after {
+    content: '✓';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #1565C0;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    animation: checkmark 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+.background-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.background-option:hover img {
+    transform: scale(1.1);
+}
+
+/* 动画效果 - 在animation.css中定义了更好的版本 */
+
+/* 游戏板震动动画 */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* 撤销动画 */
+@keyframes undoAnimation {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(0.95) rotate(-2deg); }
+    50% { transform: scale(1.05) rotate(2deg); }
+    75% { transform: scale(0.98) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.undo-animation {
+    animation: undoAnimation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 响应式设计 */
+@media (max-width: 500px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .game-board {
+        height: 320px;
+    }
+    
+    .tile {
+        font-size: 20px;
+    }
+    
+    .tile-1024, .tile-2048 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-board {
+        height: 280px;
+    }
+    
+    .score-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .score-box {
+        width: 100%;
+    }
+    
+    .background-option {
+        aspect-ratio: 3/2;
+    }
+} 
