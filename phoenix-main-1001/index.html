@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- 分布式CSS文件 -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container animate-page-load">
+        <!-- 顶部导航栏 -->
+        <nav class="navbar animate-fade-in delay-1">
+            <div class="nav-buttons">
+                <button class="nav-btn active hover-lift button-press" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>主页</span>
+                </button>
+                <button class="nav-btn hover-lift button-press" data-section="tools">
+                    <i class="fas fa-tools"></i>
+                    <span>工具</span>
+                </button>
+                <button class="nav-btn hover-lift button-press" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>设置</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 主页内容 -->
+        <div class="section active" id="home">
+            <!-- 时间显示和搜索区域 -->
+            <div class="time-display animate-fade-in-scale delay-2">
+                <div class="time time-glow" id="current-time">00:00:00</div>
+                <div class="date" id="current-date">2024年1月1日 星期一</div>
+                
+                <!-- 新搜索框组件 -->
+                <div class="modern-search-container animate-fade-in delay-3">
+                    <div class="modern-search-box hover-glow">
+                        <div class="search-icon-wrapper">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" id="modern-search-input" placeholder="搜索或输入网址..." autocomplete="off">
+                        <div class="search-actions">
+                            <button class="search-clear-btn button-press" id="search-clear-btn" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="search-submit-btn button-press" id="search-submit-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 搜索区域结束 -->
+            </div>
+
+
+        </div>
+
+
+        <!-- 工具页面 -->
+        <div class="section" id="tools">
+            <h2 class="scroll-reveal">实用工具</h2>
+            <div class="tools-grid">
+                <div class="tool-card scroll-reveal hover-lift card-float">
+                    <i class="fas fa-calculator"></i>
+                    <h3>计算器</h3>
+                    <p>简易计算器工具</p>
+                </div>
+                <div class="tool-card scroll-reveal hover-lift card-float delay-1">
+                    <i class="fas fa-clock"></i>
+                    <h3>番茄钟</h3>
+                    <p>专注时间管理</p>
+                </div>
+                <div class="tool-card scroll-reveal hover-lift card-float delay-2">
+                    <i class="fas fa-palette"></i>
+                    <h3>取色器</h3>
+                    <p>颜色选择工具</p>
+                </div>
+                <div class="tool-card scroll-reveal hover-lift card-float delay-3">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>二维码生成</h3>
+                    <p>快速生成二维码</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置页面 -->
+        <div class="section" id="settings">
+            <div class="settings-container">
+                <div class="setting-group expanded scroll-reveal hover-lift" data-group="appearance">
+                    <h3>外观设置</h3>
+                    <div class="setting-item">
+                        <label>显示秒数</label>
+                        <input type="checkbox" class="show-seconds" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label>时间格式</label>
+                        <select class="time-format-selector">
+                            <option value="24">24小时制</option>
+                            <option value="12">12小时制</option>
+                        </select>
+                    </div>
+                    <!-- 背景设置已移除，系统默认使用 #FFAAAA 背景颜色 -->
+                </div>
+                <div class="setting-group expanded scroll-reveal hover-lift delay-1" data-group="functionality">
+                    <h3>功能设置</h3>
+                    <div class="setting-item">
+                        <label>搜索引擎</label>
+                        <select class="search-engine-selector">
+                            <option value="google">Google</option>
+                            <option value="baidu">百度</option>
+                            <option value="bing">必应</option>
+                            <option value="duckduckgo">DuckDuckGo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分布式JavaScript文件 -->
+    <script src="js/utils.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/time.js"></script>
+
+    <script src="js/settings.js"></script>
+    <script src="js/modern-search.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

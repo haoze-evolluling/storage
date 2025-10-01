@@ -1,0 +1,127 @@
+/* 基础样式和变量定义 */
+/* 全局重置和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 主题配色方案 */
+    --brand-primary: #FF6666;        /* 主品牌色 - 珊瑚红 */
+    --brand-secondary: #FF8888;      /* 辅助品牌色 - 浅珊瑚红 */
+    --brand-tertiary: #FFAAAA;       /* 第三级品牌色 - 更浅珊瑚红 */
+    
+    /* 中性色阶 - 黑白灰阶 */
+    --neutral-50: #ffffff;
+    --neutral-100: #f8f8f8;
+    --neutral-200: #f0f0f0;
+    --neutral-300: #e0e0e0;
+    --neutral-400: #cccccc;
+    --neutral-500: #999999;
+    --neutral-600: #666666;
+    --neutral-700: #444444;
+    --neutral-800: #2a2a2a;
+    --neutral-900: #1a1a1a;
+    
+    /* 语义色彩 - #FF6666主题色系 */
+    --success-50: #fff5f5;
+    --success-500: #FF6666;
+    --success-600: #FF5555;
+    --success-700: #FF4444;
+    
+    --warning-50: #fff5f5;
+    --warning-500: #FF6666;
+    --warning-600: #FF5555;
+    --warning-700: #FF4444;
+    
+    --error-50: #fff5f5;
+    --error-500: #FF6666;
+    --error-600: #FF5555;
+    --error-700: #FF4444;
+    
+    /* 主题配色 - 珊瑚红渐变 */
+    --bg-primary: #FFAAAA;
+    --bg-secondary: rgba(255, 102, 102, 0.1);
+    --bg-card: rgba(255, 255, 255, 0.15);
+    --bg-surface: rgba(255, 255, 255, 0.05);
+    --bg-overlay: rgba(255, 102, 102, 0.1);
+    
+    /* 文本颜色 - 黑白对比 */
+    --text-primary: #000000;         /* 主文本 - 纯黑 */
+    --text-secondary: #333333;       /* 次要文本 - 深灰 */
+    --text-tertiary: #666666;        /* 第三级文本 - 中灰 */
+    --text-inverse: #ffffff;         /* 反色文本 - 纯白 */
+    --text-muted: #999999;          /* 弱化文本 - 浅灰 */
+    
+    /* 边框和分割线 - #FF6666主题色系 */
+    --border-light: rgba(255, 102, 102, 0.1);
+    --border-medium: rgba(255, 102, 102, 0.2);
+    --border-strong: rgba(255, 102, 102, 0.3);
+    --border-accent: rgba(255, 102, 102, 0.4);
+    
+    /* 阴影系统 - #FF6666主题色阴影 */
+    --shadow-xs: 0 1px 2px 0 rgba(255, 102, 102, 0.1);
+    --shadow-sm: 0 1px 3px 0 rgba(255, 102, 102, 0.15), 0 1px 2px -1px rgba(255, 102, 102, 0.15);
+    --shadow-md: 0 4px 6px -1px rgba(255, 102, 102, 0.15), 0 2px 4px -2px rgba(255, 102, 102, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(255, 102, 102, 0.15), 0 4px 6px -4px rgba(255, 102, 102, 0.15);
+    --shadow-xl: 0 20px 25px -5px rgba(255, 102, 102, 0.15), 0 8px 10px -6px rgba(255, 102, 102, 0.15);
+    --shadow-2xl: 0 25px 50px -12px rgba(255, 102, 102, 0.25);
+    --shadow-glass: 0 8px 32px rgba(255, 102, 102, 0.1);
+    --shadow-colored: 0 10px 15px -3px rgba(255, 102, 102, 0.1), 0 4px 6px -4px rgba(255, 102, 102, 0.1);
+    
+    /* 交互状态色彩 - #FF6666主题色系 */
+    --accent-color: var(--brand-primary);
+    --hover-color: var(--brand-secondary);
+    --active-color: var(--brand-tertiary);
+    --focus-color: var(--brand-primary);
+    --success-color: var(--success-500);
+    --warning-color: var(--warning-500);
+    --error-color: var(--error-500);
+    
+}
+
+body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+
+/* 选择状态 */
+::selection {
+    background: var(--accent-color);
+    color: var(--text-inverse);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+}
+
+
