@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>凤羽 (FengYU) - 个人导航页</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="clickEffects.css">
+  <link rel="icon" href="icon.png" type="image/png">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>凤羽 (FengYU)</h1>
+      <div class="search-container">
+        <form id="searchForm" class="search-form">
+          <input type="text" id="searchInput" placeholder="搜索..." class="search-input" autocomplete="off">
+          <button type="submit" class="search-btn" title="搜索">🔍</button>
+        </form>
+      </div>
+      <div class="settings-btn" id="settingsBtn" title="设置">⚙️</div>
+    </header>
+    
+    <main>
+      <div class="categories-container" id="categoriesContainer">
+        <!-- 分类卡片将通过JavaScript动态生成 -->
+      </div>
+    </main>
+
+    <!-- 添加分类的模态窗口 -->
+    <div class="modal" id="addCategoryModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>添加分类</h2>
+        <form id="addCategoryForm">
+          <div class="form-group">
+            <label for="categoryName">分类名称</label>
+            <input type="text" id="categoryName" required maxlength="20">
+          </div>
+          <button type="submit" class="btn">保存</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 添加网站的模态窗口 -->
+    <div class="modal" id="addWebsiteModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>添加网站</h2>
+        <form id="addWebsiteForm">
+          <input type="hidden" id="categoryId">
+          <div class="form-group">
+            <label for="websiteName">网站名称</label>
+            <input type="text" id="websiteName" required>
+          </div>
+          <div class="form-group">
+            <label for="websiteUrl">网站地址</label>
+            <input type="url" id="websiteUrl" required placeholder="https://example.com">
+          </div>
+          <div class="form-group">
+            <label for="websiteIcon">图标URL (可选)</label>
+            <input type="url" id="websiteIcon" placeholder="https://example.com/favicon.ico">
+          </div>
+          <button type="submit" class="btn">保存</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 设置模态窗口 -->
+    <div class="modal" id="settingsModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>设置</h2>
+        <div class="settings-content">
+          <div class="settings-item">
+            <label>深色模式</label>
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="settingsCheckbox">
+                <input type="checkbox" id="settingsCheckbox" />
+                <div class="slider"></div>
+              </label>
+              <div class="theme-icon" id="settingsThemeIcon">🌙</div>
+            </div>
+          </div>
+          <div class="settings-item">
+            <label>搜索引擎</label>
+            <select id="searchEngineSelect" class="search-engine-select">
+              <option value="https://www.google.com/search?q=">Google</option>
+              <option value="https://www.baidu.com/s?wd=">百度</option>
+              <option value="https://cn.bing.com/search?q=">必应</option>
+              <option value="https://www.sogou.com/web?query=">搜狗</option>
+              <option value="https://search.yahoo.com/search?p=">Yahoo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右键菜单 -->
+    <div class="context-menu" id="contextMenu">
+      <ul>
+       
+        <li id="addNewCategory">添加新分类</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="background.js"></script>
+  <!-- 先引入UI模块 -->
+  <script src="categoryUI.js"></script>
+  <!-- 再引入核心模块 -->
+  <script src="categories.js"></script>
+  <!-- 引入点击效果模块 -->
+  <script src="clickEffects.js"></script>
+</body>
+</html>
