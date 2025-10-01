@@ -1,0 +1,320 @@
+/* 羲和 - 待办事项管理应用 CSS */
+
+/* 变量定义 */
+:root {
+  /* 浅色模式变量 */
+  --primary-color: #4a6fa5;
+  --secondary-color: #6b8cae;
+  --accent-color: #ff6b6b;
+  --text-color: #333;
+  --light-text: #666;
+  --bg-color: #f5f7fa;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --success-color: #4caf50;
+  --toggle-bg: #e4e7ec;
+  --toggle-circle: #fff;
+}
+
+/* 深色模式变量 */
+[data-theme="dark"] {
+  --primary-color: #6d8cb0;
+  --secondary-color: #8ba5c4;
+  --accent-color: #ff8585;
+  --text-color: #e4e4e4;
+  --light-text: #b0b0b0;
+  --bg-color: #1a1a1a;
+  --card-bg: rgba(40, 44, 52, 0.85);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  --input-bg: rgba(50, 54, 62, 0.9);
+  --success-color: #5dc264;
+  --toggle-bg: #555;
+  --toggle-circle: #1a1a1a;
+}
+
+/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+body {
+  background: url('./backgroud01.png') center center/cover no-repeat fixed;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* 头部容器 */
+.header-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* 时间显示 */
+.time-display {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 8px 15px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  animation: fadeIn 0.5s ease-out;
+  z-index: 100;
+}
+
+.time-display .time {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 1px;
+}
+
+.time-display .date {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  margin-top: 2px;
+}
+
+/* 深色模式切换按钮 */
+.theme-toggle {
+  width: 50px;
+  height: 26px;
+  border-radius: 15px;
+  background-color: var(--toggle-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  transition: var(--transition);
+}
+
+.theme-toggle-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--toggle-circle);
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+[data-theme="dark"] .theme-toggle-circle {
+  transform: translateX(24px);
+}
+
+/* 毛玻璃效果容器 */
+.todo-app {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  transition: var(--transition);
+}
+
+/* 标题样式 */
+h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* 表单样式 */
+#todo-form {
+  display: flex;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--input-bg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+#todo-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+#todo-form button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#todo-form button:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* 待办事项列表 */
+#todo-list {
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.todo-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--success-color);
+}
+
+.todo-item label {
+  flex: 1;
+  font-size: 1rem;
+  word-break: break-word;
+  transition: var(--transition);
+}
+
+.todo-item.completed label {
+  text-decoration: line-through;
+  color: var(--light-text);
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--light-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+  transition: var(--transition);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  color: var(--accent-color);
+  background: rgba(255, 107, 107, 0.1);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .time-display {
+    width: auto;
+    max-width: 90%;
+    bottom: 10px;
+  }
+  
+  .theme-toggle {
+    align-self: flex-end;
+  }
+  
+  .todo-app {
+    padding: 20px;
+    margin-top: 80px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  #todo-input {
+    padding: 10px;
+  }
+  
+  .todo-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .todo-app {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  #todo-form {
+    flex-direction: column;
+  }
+  
+  #todo-form button {
+    width: 100%;
+    padding: 12px;
+  }
+}

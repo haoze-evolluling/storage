@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>羲和 (XiHe)-个人代办项</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" href="./icon01.png">
+  <link rel="icon" type="image/svg+xml" href="./icon01.svg">
+</head>
+<body>
+  <div class="header-container">
+    <div class="time-display" id="time-display">
+      <span class="time"></span>
+      <span class="date"></span>
+    </div>
+    <div class="theme-toggle" id="theme-toggle">
+      <div class="theme-toggle-circle">☀️</div>
+    </div>
+  </div>
+  <div class="todo-app">
+    <h1>代办事项</h1>
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="添加新的待办事项..." autocomplete="off" required />
+      <button type="submit">添加</button>
+    </form>
+    <ul id="todo-list"></ul>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
