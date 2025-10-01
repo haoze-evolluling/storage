@@ -1,0 +1,58 @@
+{
+  "name": "bilibili",
+  "version": "3.0.1",
+  "description": "a video player",
+  "main": "index.js",
+  "scripts": {
+    "start": "chcp 65001 && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haoze-evolluling/BILIBILI.git"
+  },
+  "author": "haoze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haoze-evolluling/BILIBILI/issues"
+  },
+  "homepage": "https://github.com/haoze-evolluling/BILIBILI#readme",
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.haoze.bilibili",
+    "productName": "BILIBILI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "installerHeaderIcon": "icon.ico",
+      "artifactName": "${productName}-${version}-Setup.${ext}",
+      "shortcutName": "${productName}"
+    }
+  }
+}
